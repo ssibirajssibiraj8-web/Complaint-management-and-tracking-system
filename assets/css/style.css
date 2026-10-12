@@ -1,0 +1,518 @@
+/* ==========================================================================
+   Campus Complaint Management and Tracking System
+   Custom Modern Design System & Stylesheet
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --app-primary: #2563EB;
+  --app-primary-hover: #1D4ED8;
+  --app-primary-subtle: #EFF6FF;
+  --app-dark: #0F172A;
+  --app-slate-800: #1E293B;
+  --app-slate-700: #334155;
+  --app-slate-600: #475569;
+  --app-slate-500: #64748B;
+  --app-slate-400: #94A3B8;
+  --app-slate-200: #E2E8F0;
+  --app-slate-100: #F1F5F9;
+  --app-bg: #F8FAFC;
+  --app-success: #16A34A;
+  --app-success-subtle: #F0FDF4;
+  --app-warning: #F59E0B;
+  --app-warning-subtle: #FFFBEB;
+  --app-danger: #DC2626;
+  --app-danger-subtle: #FEF2F2;
+  --app-info: #0284C7;
+  --app-info-subtle: #F0F9FF;
+  --app-card-radius: 14px;
+  --app-card-shadow: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+  --app-hover-shadow: 0 12px 30px -4px rgba(37, 99, 235, 0.12), 0 4px 10px -2px rgba(15, 23, 42, 0.06);
+  --sidebar-width: 260px;
+  --header-height: 70px;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--app-bg);
+  color: var(--app-dark);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--app-slate-100);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--app-slate-400);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--app-slate-500);
+}
+
+/* --------------------------------------------------------------------------
+   Layout & Dashboard Structure
+   -------------------------------------------------------------------------- */
+.dashboard-wrapper {
+  display: flex;
+  min-height: calc(100vh - var(--header-height));
+}
+
+.dashboard-sidebar {
+  width: var(--sidebar-width);
+  background-color: #FFFFFF;
+  border-right: 1px solid var(--app-slate-200);
+  padding: 1.5rem 1rem;
+  flex-shrink: 0;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.dashboard-main {
+  flex-grow: 1;
+  padding: 2rem;
+  background-color: var(--app-bg);
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+@media (max-width: 991.98px) {
+  .dashboard-sidebar {
+    position: fixed;
+    top: var(--header-height);
+    left: 0;
+    bottom: 0;
+    z-index: 1040;
+    transform: translateX(-100%);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  }
+  .dashboard-sidebar.show {
+    transform: translateX(0);
+  }
+  .dashboard-main {
+    padding: 1.25rem;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   Navigation Bar
+   -------------------------------------------------------------------------- */
+.navbar-custom {
+  background-color: #FFFFFF;
+  border-bottom: 1px solid var(--app-slate-200);
+  height: var(--header-height);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.brand-logo {
+  font-weight: 800;
+  font-size: 1.25rem;
+  color: var(--app-dark);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+}
+
+.brand-logo:hover {
+  color: var(--app-primary);
+}
+
+.brand-badge {
+  background: linear-gradient(135deg, var(--app-primary), #4F46E5);
+  color: white;
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
+}
+
+/* Sidebar Nav Items */
+.sidebar-heading {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--app-slate-400);
+  font-weight: 700;
+  margin: 1.25rem 0 0.5rem 0.75rem;
+}
+
+.sidebar-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 0.75rem 1rem;
+  color: var(--app-slate-600);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.925rem;
+  border-radius: 10px;
+  transition: all 0.2s ease;
+  margin-bottom: 0.3rem;
+}
+
+.sidebar-nav-link i {
+  font-size: 1.15rem;
+  color: var(--app-slate-500);
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav-link:hover {
+  background-color: var(--app-primary-subtle);
+  color: var(--app-primary);
+}
+
+.sidebar-nav-link:hover i {
+  color: var(--app-primary);
+  transform: translateX(2px);
+}
+
+.sidebar-nav-link.active {
+  background-color: var(--app-primary);
+  color: #FFFFFF;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.sidebar-nav-link.active i {
+  color: #FFFFFF;
+}
+
+/* --------------------------------------------------------------------------
+   Cards & Modern Containers
+   -------------------------------------------------------------------------- */
+.app-card {
+  background: #FFFFFF;
+  border-radius: var(--app-card-radius);
+  border: 1px solid var(--app-slate-200);
+  box-shadow: var(--app-card-shadow);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.app-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--app-hover-shadow);
+}
+
+.card-stat-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+/* Hero Section Styles */
+.hero-gradient {
+  background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #1E3A8A 100%);
+  color: white;
+  padding: 5rem 0 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-gradient::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  right: -20%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(37, 99, 235, 0.3) 0%, rgba(37, 99, 235, 0) 70%);
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   Timeline (Visual Progression of Complaints)
+   -------------------------------------------------------------------------- */
+.complaint-timeline {
+  position: relative;
+  padding-left: 2.2rem;
+  margin-top: 1.5rem;
+}
+
+.complaint-timeline::before {
+  content: '';
+  position: absolute;
+  left: 0.95rem;
+  top: 10px;
+  bottom: 10px;
+  width: 3px;
+  background: var(--app-slate-200);
+  border-radius: 3px;
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.timeline-item:last-child {
+  margin-bottom: 0;
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -2.2rem;
+  top: 2px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid var(--app-slate-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.9);
+}
+
+.timeline-item.completed .timeline-dot {
+  background: var(--app-success);
+  border-color: var(--app-success);
+  color: #FFFFFF;
+  font-size: 12px;
+}
+
+.timeline-item.active .timeline-dot {
+  background: var(--app-primary);
+  border-color: var(--app-primary);
+  box-shadow: 0 0 0 5px rgba(37, 99, 235, 0.25);
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(37, 99, 235, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+}
+
+.timeline-content {
+  background: var(--app-slate-100);
+  padding: 1rem 1.25rem;
+  border-radius: 12px;
+  border: 1px solid var(--app-slate-200);
+}
+
+.timeline-item.active .timeline-content {
+  background: var(--app-primary-subtle);
+  border-color: rgba(37, 99, 235, 0.2);
+}
+
+/* --------------------------------------------------------------------------
+   Star Rating Widget
+   -------------------------------------------------------------------------- */
+.rating-stars {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  gap: 0.35rem;
+}
+
+.rating-stars input[type="radio"] {
+  display: none;
+}
+
+.rating-stars label {
+  font-size: 2rem;
+  color: var(--app-slate-400);
+  cursor: pointer;
+  transition: color 0.2s ease, transform 0.15s ease;
+}
+
+.rating-stars label:hover,
+.rating-stars label:hover ~ label,
+.rating-stars input[type="radio"]:checked ~ label {
+  color: #F59E0B;
+}
+
+.rating-stars label:hover {
+  transform: scale(1.15);
+}
+
+/* Static Star Display */
+.star-display {
+  color: #F59E0B;
+  letter-spacing: 2px;
+}
+
+.star-display .empty {
+  color: var(--app-slate-400);
+}
+
+/* --------------------------------------------------------------------------
+   Tables & Data Grids
+   -------------------------------------------------------------------------- */
+.table-custom {
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.table-custom thead th {
+  background-color: var(--app-slate-100);
+  color: var(--app-slate-600);
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.9rem 1.25rem;
+  border: none;
+}
+
+.table-custom tbody tr {
+  transition: background-color 0.15s ease;
+}
+
+.table-custom tbody tr:hover {
+  background-color: #F8FAFC;
+}
+
+.table-custom tbody td {
+  padding: 1rem 1.25rem;
+  vertical-align: middle;
+  border-top: 1px solid var(--app-slate-200);
+  font-size: 0.9rem;
+}
+
+/* --------------------------------------------------------------------------
+   Notification Bell & Dropdown
+   -------------------------------------------------------------------------- */
+.notification-bell-btn {
+  position: relative;
+  background: var(--app-slate-100);
+  border: 1px solid var(--app-slate-200);
+  color: var(--app-slate-700);
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.notification-bell-btn:hover {
+  background: var(--app-primary-subtle);
+  color: var(--app-primary);
+  border-color: rgba(37, 99, 235, 0.25);
+}
+
+.notification-badge-count {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  background: var(--app-danger);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 2px solid white;
+}
+
+.notifications-dropdown-menu {
+  width: 360px;
+  max-width: 90vw;
+  padding: 0;
+  border-radius: 14px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid var(--app-slate-200);
+  overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   Buttons & Micro-interactions
+   -------------------------------------------------------------------------- */
+.btn-primary {
+  background-color: var(--app-primary);
+  border-color: var(--app-primary);
+  font-weight: 600;
+  padding: 0.6rem 1.25rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--app-primary-hover);
+  border-color: var(--app-primary-hover);
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-light {
+  background: var(--app-slate-100);
+  border-color: var(--app-slate-200);
+  color: var(--app-slate-700);
+  font-weight: 600;
+  border-radius: 10px;
+}
+
+.btn-light:hover {
+  background: var(--app-slate-200);
+  border-color: var(--app-slate-400);
+  color: var(--app-dark);
+}
+
+/* --------------------------------------------------------------------------
+   Empty State Component
+   -------------------------------------------------------------------------- */
+.empty-state-box {
+  padding: 3.5rem 1.5rem;
+  text-align: center;
+}
+
+.empty-state-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 1.25rem;
+  border-radius: 50%;
+  background-color: var(--app-slate-100);
+  color: var(--app-slate-400);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2.2rem;
+}
+
+/* --------------------------------------------------------------------------
+   Print Styles for Reports
+   -------------------------------------------------------------------------- */
+@media print {
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+  }
+  .navbar-custom,
+  .dashboard-sidebar,
+  .btn,
+  .no-print,
+  footer {
+    display: none !important;
+  }
+  .dashboard-main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+  .app-card {
+    border: 1px solid #CCCCCC !important;
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+}

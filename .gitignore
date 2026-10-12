@@ -1,0 +1,6 @@
+.env
+.env.*
+!.env.example
+
+/uploads/complaints/*
+!/uploads/complaints/.gitkeep
